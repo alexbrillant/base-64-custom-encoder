@@ -30,7 +30,12 @@ public static class Base64 {
             byte byte1 = bytes[firstByteOfGroupIndex],
             byte2 = bytes[firstByteOfGroupIndex + 1],
             byte3 = bytes[firstByteOfGroupIndex + 2];
+            encodedBytes += Encode3Bytes(byte1, byte2, byte3);
+        }
+        return encodedBytes;
+    }
 
+    private static String Encode3Bytes(byte byte1, byte byte2, byte byte3) {
             int char1 = bitwiseAnd(byte1, FIRST_6_BITS_MASK) >> 2;
 
             int char2 = bitwiseAnd(byte1, LAST_2_BITS_MASK) << 4;
@@ -41,10 +46,8 @@ public static class Base64 {
 
             int char4 = bitwiseAnd(byte3, LAST_6_BITS_MASK);
 
-            encodedBytes += alphabet[char1].toString() + alphabet[char2].toString() +
+            return alphabet[char1].toString() + alphabet[char2].toString() +
             alphabet[char3].toString() + alphabet[char4].toString();
-        }
-        return encodedBytes;
     }
 
     private static int bitwiseAnd(byte currentByte, byte mask) {
