@@ -41,8 +41,8 @@ public static class Base64 {
 
             int char4 = bitwiseAnd(byte3, LAST_6_BITS_MASK);
 
-            encodedBytes += alphabet[char1] + alphabet[char2] + 
-            alphabet[char3] + alphabet[char4];
+            encodedBytes += alphabet[char1].toString() + alphabet[char2].toString() +
+            alphabet[char3].toString() + alphabet[char4].toString();
         }
         return encodedBytes;
     }
