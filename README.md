@@ -1,4 +1,4 @@
-# base-64-custom-encoder
+# Base 64 custom encoder
 
 Custom encoder built using c# and .net
 
