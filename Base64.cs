@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections;
-using System.Linq;
 
 public class Program
 {
@@ -28,9 +27,9 @@ public static class Base64 {
 
         for (int i = 0; i < byteGroupCount; i++) {
             int firstByteOfGroupIndex = (i * BYTE_GROUP_LENGTH);
-            byte byte1 = bytes[firstByteOfGroupIndex];
-            byte byte2 = bytes[firstByteOfGroupIndex + 1];
-            byte byte3 = bytes[firstByteOfGroupIndex + 2];
+            byte byte1 = bytes[firstByteOfGroupIndex],
+            byte2 = bytes[firstByteOfGroupIndex + 1],
+            byte3 = bytes[firstByteOfGroupIndex + 2];
 
             int char1 = bitwiseAnd(byte1, FIRST_6_BITS_MASK) >> 2;
 
