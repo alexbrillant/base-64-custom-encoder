@@ -32,6 +32,7 @@ public static class Base64 {
             byte3 = bytes[firstByteOfGroupIndex + 2];
             encodedBytes += Encode3Bytes(byte1, byte2, byte3);
         }
+        
         return encodedBytes;
     }
 
@@ -46,8 +47,8 @@ public static class Base64 {
 
             int char4 = bitwiseAnd(byte3, LAST_6_BITS_MASK);
 
-            return alphabet[char1].toString() + alphabet[char2].toString() +
-            alphabet[char3].toString() + alphabet[char4].toString();
+            return alphabet[char1].ToString() + alphabet[char2].ToString() +
+            alphabet[char3].ToString() + alphabet[char4].ToString();
     }
 
     private static int bitwiseAnd(byte currentByte, byte mask) {
