@@ -2,16 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        byte[] bytes = {0x6A, 0x77, 0xC4, 0x6A, 0x77, 0xC4};
-        String results = Base64.Encode(bytes);
-        Console.WriteLine(results);
-    }
-}
-
 public static class Base64 {
     private const int BYTE_GROUP_LENGTH = 3;
     private const byte FIRST_6_BITS_MASK = 0xFC;
@@ -32,22 +22,22 @@ public static class Base64 {
             byte3 = bytes[firstByteOfGroupIndex + 2];
             encodedBytes += Encode3Bytes(byte1, byte2, byte3);
         }
-        
+
         return encodedBytes;
     }
 
     private static String Encode3Bytes(byte byte1, byte byte2, byte byte3) {
-            int char1 = bitwiseAnd(byte1, FIRST_6_BITS_MASK) >> 2;
+        int char1 = bitwiseAnd(byte1, FIRST_6_BITS_MASK) >> 2;
 
-            int char2 = bitwiseAnd(byte1, LAST_2_BITS_MASK) << 4;
-            char2 += bitwiseAnd(byte2, FIRST_4_BITS_MASK) >> 4;
+        int char2 = bitwiseAnd(byte1, LAST_2_BITS_MASK) << 4;
+        char2 += bitwiseAnd(byte2, FIRST_4_BITS_MASK) >> 4;
 
-            int char3 = bitwiseAnd(byte2, LAST_4_BITS_MASK) << 2;
-            char3 += bitwiseAnd(byte3, FIRST_2_BITS_MASK) >> 6;
+        int char3 = bitwiseAnd(byte2, LAST_4_BITS_MASK) << 2;
+        char3 += bitwiseAnd(byte3, FIRST_2_BITS_MASK) >> 6;
 
-            int char4 = bitwiseAnd(byte3, LAST_6_BITS_MASK);
+        int char4 = bitwiseAnd(byte3, LAST_6_BITS_MASK);
 
-            return alphabet[char1].ToString() + alphabet[char2].ToString() +
+        return alphabet[char1].ToString() + alphabet[char2].ToString() +
             alphabet[char3].ToString() + alphabet[char4].ToString();
     }
 
@@ -70,4 +60,14 @@ public static class Base64 {
         'w', 'x', 'y', 'z', '0', '1', '2', '3',
         '4', '5', '6', '7', '8', '9', '/', '+'
     };
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        byte[] bytes = {0x6A, 0x77, 0xC4, 0x6A, 0x77, 0xC4};
+        String results = Base64.Encode(bytes);
+        Console.WriteLine(results);
+    }
 }
